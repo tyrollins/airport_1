@@ -27,6 +27,7 @@ describe Plane do
     it "should be able to land" do
       plane.land
       expect(plane).not_to be_flying
+      
     end
 
     it "should change it's status to 'not flying' after it lands" do

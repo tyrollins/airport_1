@@ -1,4 +1,9 @@
+require_relative './plane'
+require_relative './weather'
+
 class Airport
+
+  include Weather
 
   DEFAULT_CAPACITY = 10
 
@@ -20,12 +25,17 @@ class Airport
 
   def arrival(plane)
     raise "Airport is full" if full?
+    raise "Bad weather!" if stormy?
+    plane.land
     planes << plane
   end
 
   def departure(plane)
     raise "Airport is empty" if empty?
+    raise "Bad weather!" if stormy?
+    plane.take_off
     @planes.delete(plane)
+    
   end
 
   def plane_count
